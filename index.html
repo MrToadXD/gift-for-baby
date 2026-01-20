@@ -230,11 +230,25 @@
 
       // get point on heart with -PI <= t <= PI
       function pointOnHeart(t) {
-        return new Point(
-          160 * Math.pow(Math.sin(t), 3),
-          130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
-        );
-      }
+    // --- PHẦN CHỈNH SỬA ĐỘ TO ---
+    // Bạn thay đổi số ở đây nhé:
+    // 1.0 là kích thước mặc định ban đầu.
+    // 1.3 là to hơn khoảng 30%.
+    // 1.5 là to gấp rưỡi.
+    // Nếu muốn nhỏ lại thì điền 0.8, 0.5...
+    var scaleFactor = 1.4; 
+    // ---------------------------
+
+    // Tính toán tọa độ gốc
+    var x_base = 160 * Math.pow(Math.sin(t), 3);
+    var y_base = 130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25;
+
+    // Trả về tọa độ đã được nhân với hệ số phóng đại
+    return new Point(
+      x_base * scaleFactor,
+      y_base * scaleFactor
+    );
+  }
 
       // creating the particle image using a dummy canvas
       var image = (function() {
