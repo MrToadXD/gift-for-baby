@@ -44,12 +44,27 @@
   <div class="center-text">
     <h1 style="color:rgb(255, 192, 253); font-size: 14px;">💗Gia Linhhh 💗</h1>
     <h1 style="color:rgb(255, 192, 253); font-size: 14px;">cavangyeuanh</h1>
-    <img src="./gialinh.png" alt="Heart Image" style="width:100px; margin-top:10px;">
+    <img id="center-image" src="gialinh.png" alt="Heart Image" style="width:100px; margin-top:10px;">
   </div>
 
   <canvas id="pinkboard"></canvas>
   
   <script>
+    (function() {
+      var image = document.getElementById('center-image');
+      if (!image) return;
+
+      var candidates = ['gialinh.png', './gialinh.png', '/gift-for-baby/gialinh.png'];
+      var index = 0;
+
+      image.onerror = function() {
+        index++;
+        if (index < candidates.length) {
+          image.src = candidates[index];
+        }
+      };
+    })();
+
     /*
      * Settings
      */
