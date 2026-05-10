@@ -54,7 +54,7 @@
       var image = document.getElementById('center-image');
       if (!image) return;
 
-      var imageFileName = 'gialinh.png';
+      var imageFileName = (image.getAttribute('src') || '').split('/').pop() || 'gialinh.png';
       var candidates = ['./' + imageFileName, imageFileName];
       var firstPathSegment = window.location.pathname.split('/').filter(Boolean)[0];
       if (firstPathSegment) {
