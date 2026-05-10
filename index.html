@@ -54,13 +54,19 @@
       var image = document.getElementById('center-image');
       if (!image) return;
 
-      var candidates = ['gialinh.png', './gialinh.png', '/gift-for-baby/gialinh.png'];
+      var candidates = ['gialinh.png', './gialinh.png'];
+      var firstPathSegment = window.location.pathname.split('/').filter(Boolean)[0];
+      if (firstPathSegment) {
+        candidates.push('/' + firstPathSegment + '/gialinh.png');
+      }
       var index = 0;
 
       image.onerror = function() {
         index++;
         if (index < candidates.length) {
           image.src = candidates[index];
+        } else {
+          image.onerror = null;
         }
       };
     })();
